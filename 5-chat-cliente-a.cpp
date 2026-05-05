@@ -26,7 +26,7 @@ void recibirMensajes(int socketId)
         {
             buffer[bytesRecibidos] = 0;
             mtxTerminal.lock();
-            printf("\nin: %s\n", buffer);
+            printf("[Alguien dice]: %s\n", buffer);
             mtxTerminal.unlock();
         }
     }
@@ -34,12 +34,12 @@ void recibirMensajes(int socketId)
 
 void escribirMensaje(int socketId)
 {
+    mtxTerminal.lock();
+    cout << "Escriba los mensajes que quiera enviar." << endl;
+    mtxTerminal.unlock();
+
     while (true)
     {
-        mtxTerminal.lock();
-        cout << "Mensaje: " << ends;
-        mtxTerminal.unlock();
-
         string mensaje = "";
         getline(cin, mensaje);
 
@@ -47,21 +47,8 @@ void escribirMensaje(int socketId)
     }
 }
 
-struct TerminalGuard
-{
-    TerminalGuard()
-    {
-        cout << "\033[?1049h" << std::flush;
-        cout << "\033[H" << std::flush;
-    }
-
-    ~TerminalGuard() { cout << "\033[?1049l" << std::flush; }
-};
-
 int main(int argc, char *argv[])
 {
-    // TerminalGuard terminalGuard;
-
     struct sockaddr_in socketConfig;
     memset(&socketConfig, '0', sizeof(socketConfig));
 
@@ -77,8 +64,6 @@ int main(int argc, char *argv[])
         cout << "Error en la conexión..." << endl;
         return EXIT_FAILURE;
     }
-
-    cout << "Inicializando threads..." << endl;
 
     thread thRecibirMensajes(recibirMensajes, socketComunicacion);
     thread thEscribirMensaje(escribirMensaje, socketComunicacion);
