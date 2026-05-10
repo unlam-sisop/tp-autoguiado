@@ -1,3 +1,4 @@
+C = gcc
 CXX = g++
 CXXFLAGS = -std=c++20
 
@@ -12,9 +13,10 @@ threads: 2-threads-a.cpp
 semaforos: 3-semaforos-a.cpp
 	$(CXX) $(CXXFLAGS) -o 3-semaforos.out 3-semaforos-a.cpp
 
-shm: 4-shm-cliente-a.cpp 4-shm-servidor-a.cpp
-	$(CXX) $(CXXFLAGS) -o 4-shm-cliente.out 4-shm-cliente-a.cpp
-	$(CXX) $(CXXFLAGS) -o 4-shm-servidor.out 4-shm-servidor-a.cpp
+shm: 4-shm-productor.c 4-shm-consumidor1.c 4-shm-consumidor2.c
+	$(C) $(CFLAGS) -o 4-shm-productor 4-shm-productor.c
+	$(C) $(CFLAGS) -o 4-shm-consumidor1 4-shm-consumidor1.c
+	$(C) $(CFLAGS) -o 4-shm-consumidor2 4-shm-consumidor2.c
 
 sockets: 5-chat-cliente-a.cpp 5-chat-servidor-a.cpp
 	$(CXX) $(CXXFLAGS) -o 5-cliente.out 5-chat-cliente-a.cpp
@@ -24,7 +26,8 @@ clean:
 	rm 1-fork.out
 	rm 2-threads.out
 	rm 3-semaforos.out
-	rm 4-shm-cliente.out
-	rm 4-shm-servidor.out
+	rm 4-shm-productor
+	rm 4-shm-consumidor1
+	rm 4-shm-consumidor2
 	rm 5-cliente.out
 	rm 5-servidor.out
