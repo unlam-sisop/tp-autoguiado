@@ -4,14 +4,14 @@ CXXFLAGS = -std=c++20
 
 all: fork threads semaforos shm sockets
 
-fork: 1-fork-a.c
-	$(C) $(CFLAGS) -o 1-fork 1-fork-a.c
+fork: 1-fork.c
+	$(C) $(CFLAGS) -o 1-fork 1-fork.c
 
 threads: 2-threads-a.cpp
 	$(CXX) $(CXXFLAGS) -o 2-threads 2-threads-a.cpp
 
-semaforos: 3-semaforos-a.cpp
-	$(CXX) $(CXXFLAGS) -o 3-semaforos 3-semaforos-a.cpp
+semaforos: 3-semaforos.cpp
+	$(CXX) $(CXXFLAGS) -o 3-semaforos 3-semaforos.cpp
 
 shm: 4-shm-productor.c 4-shm-consumidor1.c 4-shm-consumidor2.c
 	$(C) $(CFLAGS) -o 4-shm-productor 4-shm-productor.c
