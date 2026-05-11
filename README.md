@@ -1,4 +1,5 @@
 # Trabajo práctico autoguiado de Sistemas Operativos
+Fecha de publicación: 2026.05.11
 
 ## Objetivo
 
