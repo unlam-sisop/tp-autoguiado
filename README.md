@@ -19,6 +19,29 @@ Para poder desarrollar esta actividad se necesitará una computadora con:
 sudo apt install build-essential
 ```
 
+### Instalación de WSL2 y Ubuntu en Windows
+
+Si se utiliza Windows, toda la actividad debe ejecutarse dentro de Ubuntu sobre WSL2. Para instalarlo:
+
+1. Abrir **Microsoft Store**, buscar **Ubuntu** e instalar una versión con soporte vigente, por ejemplo **Ubuntu 24.04 LTS**.
+2. Abrir **PowerShell** como administrador y activar las características necesarias de WSL:
+
+```powershell
+wsl --install
+```
+
+3. Reiniciar Windows si el sistema lo solicita.
+4. Abrir **Ubuntu** desde el menú Inicio. En el primer inicio, esperar la instalación y crear un usuario y una contraseña de Linux.
+5. Comprobar desde PowerShell que la distribución utiliza WSL2:
+
+```powershell
+wsl --set-default-version 2
+wsl --set-version Ubuntu 2
+wsl -l -v
+```
+
+La columna `VERSION` debe mostrar `2` para Ubuntu. A partir de este punto, abrir una terminal de Ubuntu para clonar el repositorio, compilar y ejecutar los programas. No se deben ejecutar los programas desde PowerShell ni desde una terminal de Windows.
+
 ## Aclaraciones
 
 * Para simplificar la terminología dentro de esta guía:
